@@ -1,0 +1,149 @@
+openapi: 3.0.0
+info:
+  title: Product API
+  version: 1.0.0
+paths:
+  /:
+      get:
+        summary: ping me here
+        responses:
+          '200':
+            description: Successful response
+  /api.yaml:
+      get:
+        summary: where you can find my api
+        responses:
+          '200':
+            description: Successful response
+
+  /products:
+    get:
+      summary: Retrieve all products
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              example:
+                products:
+                  - id: 1
+                    code: "P001"
+                    name: "Product 1"
+                    description: "Description for Product 1"
+                    price: 19.99
+                    quantity: 100
+                    inventoryStatus: "In Stock"
+                    category: "Electronics"
+                    image: "product1.jpg"
+                    rating: 4.5
+                  - id: 2
+                    code: "P002"
+                    name: "Product 2"
+                    description: "Description for Product 2"
+                    price: 29.99
+                    quantity: 50
+                    inventoryStatus: "Out of Stock"
+                    category: "Clothing"
+                    image: "product2.jpg"
+                    rating: 3.8
+    post:
+      summary: Create a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - code
+                - name
+                - description
+                - price
+                - quantity
+                - inventoryStatus
+                - category
+              properties:
+                code:
+                  type: string
+                name:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: number
+                quantity:
+                  type: integer
+                inventoryStatus:
+                  type: string
+                category:
+                  type: string
+                image:
+                  type: string
+                rating:
+                  type: number
+      responses:
+        '201':
+          description: Product created successfully
+
+  /products/{productId}:
+    parameters:
+      - name: productId
+        in: path
+        required: true
+        description: ID of the product
+        schema:
+          type: integer
+    get:
+      summary: Retrieve details for a specific product
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              example:
+                id: 1
+                code: "P001"
+                name: "Product 1"
+                description: "Description for Product 1"
+                price: 19.99
+                quantity: 100
+                inventoryStatus: "In Stock"
+                category: "Electronics"
+                image: "product1.jpg"
+                rating: 4.5
+    put:
+      summary: Update details of a specific product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              code: "P001"
+              name: "Updated Product 1"
+              description: "Updated description for Product 1"
+              price: 24.99
+              quantity: 120
+              inventoryStatus: "In Stock"
+              category: "Electronics"
+              image: "updated_product1.jpg"
+              rating: 4.7
+      responses:
+        '200':
+          description: Product updated successfully
+    patch:
+      summary: Partially update details of a specific product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              quantity: 150
+              inventoryStatus: "In Stock"
+      responses:
+        '200':
+          description: Product updated successfully
+    delete:
+      summary: Remove a specific product
+      responses:
+        '204':
+          description: Product deleted successfully

@@ -1,0 +1,827 @@
+{
+	"info": {
+		"_postman_id": "8d7c017e-5773-4abe-9f7d-b4ed5648479b",
+		"name": "Regression testing",
+		"description": "# 🧪 Get started here\n\nThis template helps ensure your API continues to work as expected after updates or changes. It contains sample requests and [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) for a series of tests that validate different aspects of an API, including:\n\n1. **Status code verification:** We'll check if the API returns the expected status codes for various requests, ensuring reliability and proper error handling.\n2. **JSON schema verification:** We'll make sure the JSON response conforms to a specified JSON Schema, ensuring API contracts are honored.\n3. **Response time verification:** We'll verify that the API's response time is within the acceptable range, providing a smooth user experience and optimizing performance.\n4. **Response body verification:** We'll validate the structure and content of the response body for accuracy, ensuring the integrity of the data and preventing potential issues downstream.\n5. **Header verification:** We'll confirm the presence and correct values of specific headers in the response, enabling secure and well-structured communication between your app and its users.\n    \n\n## 🔖 **How to use this template**\n\n**Step 1:** Send the sample requests and view the response and test results.\n\n**Step 2:** Replace the sample request URLs with your desired API endpoints.\n\n**Step 3:** Customize the tests in the \"Tests\" tab if needed. Don't forget to save your changes.\n\n**Step 4:** [Run the collection](https://learning.postman.com/docs/collections/running-collections/intro-to-collection-runs/) by selecting \"Run\".\n\n<img src=\"https://content.pstmn.io/666cfa65-6e00-4308-871b-f831128bc0ac/Y29sbGVjdGlvbi1ydW5uZXItYnV0dG9uLmpwZWc=\" width=\"246\" height=\"102\">\n\n## 💡Related templates\n\n[Integration testing](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=fe506090-ca91-4340-bea9-82d2c3d2bb9a&sourceTemplateId=7ab0f80e-a964-46ee-b948-4a4e3a85809c)  \n[Performance testing](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=3302192d-87dd-4612-b381-61894de21203&sourceTemplateId=7ab0f80e-a964-46ee-b948-4a4e3a85809c)  \n[Mock data generation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=da8ceebc-d4da-478c-ab8a-37634faefc74&sourceTemplateId=7ab0f80e-a964-46ee-b948-4a4e3a85809c)  \n[Common API vulnerabilities check](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e1edbae8-6429-453d-890e-00385eea1811&sourceTemplateId=7ab0f80e-a964-46ee-b948-4a4e3a85809c)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31285703"
+	},
+	"item": [
+		{
+			"name": "init",
+			"item": [
+				{
+					"name": "populate DB",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const products = [\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1000,\r",
+									"\t\t\t\"code\": \"f230fh0g3\",\r",
+									"\t\t\t\"name\": \"Bamboo Watch\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"bamboo-watch.jpg\",\r",
+									"\t\t\t\"price\": 65,\r",
+									"\t\t\t\"category\": \"Accessories\",\r",
+									"\t\t\t\"quantity\": 24,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 5\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1001,\r",
+									"\t\t\t\"code\": \"nvklal433\",\r",
+									"\t\t\t\"name\": \"Black Watch\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"black-watch.jpg\",\r",
+									"\t\t\t\"price\": 72,\r",
+									"\t\t\t\"category\": \"Accessories\",\r",
+									"\t\t\t\"quantity\": 61,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 4\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1002,\r",
+									"\t\t\t\"code\": \"zz21cz3c1\",\r",
+									"\t\t\t\"name\": \"Blue Band\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"blue-band.jpg\",\r",
+									"\t\t\t\"price\": 79,\r",
+									"\t\t\t\"category\": \"Fitness\",\r",
+									"\t\t\t\"quantity\": 2,\r",
+									"\t\t\t\"inventoryStatus\": \"LOWSTOCK\",\r",
+									"\t\t\t\"rating\": 3\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1003,\r",
+									"\t\t\t\"code\": \"244wgerg2\",\r",
+									"\t\t\t\"name\": \"Blue T-Shirt\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"blue-t-shirt.jpg\",\r",
+									"\t\t\t\"price\": 29,\r",
+									"\t\t\t\"category\": \"Clothing\",\r",
+									"\t\t\t\"quantity\": 25,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 5\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1004,\r",
+									"\t\t\t\"code\": \"h456wer53\",\r",
+									"\t\t\t\"name\": \"Bracelet\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"bracelet.jpg\",\r",
+									"\t\t\t\"price\": 15,\r",
+									"\t\t\t\"category\": \"Accessories\",\r",
+									"\t\t\t\"quantity\": 73,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 4\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1005,\r",
+									"\t\t\t\"code\": \"av2231fwg\",\r",
+									"\t\t\t\"name\": \"Brown Purse\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"brown-purse.jpg\",\r",
+									"\t\t\t\"price\": 120,\r",
+									"\t\t\t\"category\": \"Accessories\",\r",
+									"\t\t\t\"quantity\": 0,\r",
+									"\t\t\t\"inventoryStatus\": \"OUTOFSTOCK\",\r",
+									"\t\t\t\"rating\": 4\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1006,\r",
+									"\t\t\t\"code\": \"bib36pfvm\",\r",
+									"\t\t\t\"name\": \"Chakra Bracelet\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"chakra-bracelet.jpg\",\r",
+									"\t\t\t\"price\": 32,\r",
+									"\t\t\t\"category\": \"Accessories\",\r",
+									"\t\t\t\"quantity\": 5,\r",
+									"\t\t\t\"inventoryStatus\": \"LOWSTOCK\",\r",
+									"\t\t\t\"rating\": 3\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1007,\r",
+									"\t\t\t\"code\": \"mbvjkgip5\",\r",
+									"\t\t\t\"name\": \"Galaxy Earrings\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"galaxy-earrings.jpg\",\r",
+									"\t\t\t\"price\": 34,\r",
+									"\t\t\t\"category\": \"Accessories\",\r",
+									"\t\t\t\"quantity\": 23,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 5\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1008,\r",
+									"\t\t\t\"code\": \"vbb124btr\",\r",
+									"\t\t\t\"name\": \"Game Controller\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"game-controller.jpg\",\r",
+									"\t\t\t\"price\": 99,\r",
+									"\t\t\t\"category\": \"Electronics\",\r",
+									"\t\t\t\"quantity\": 2,\r",
+									"\t\t\t\"inventoryStatus\": \"LOWSTOCK\",\r",
+									"\t\t\t\"rating\": 4\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1009,\r",
+									"\t\t\t\"code\": \"cm230f032\",\r",
+									"\t\t\t\"name\": \"Gaming Set\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"gaming-set.jpg\",\r",
+									"\t\t\t\"price\": 299,\r",
+									"\t\t\t\"category\": \"Electronics\",\r",
+									"\t\t\t\"quantity\": 63,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 3\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1010,\r",
+									"\t\t\t\"code\": \"plb34234v\",\r",
+									"\t\t\t\"name\": \"Gold Phone Case\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"gold-phone-case.jpg\",\r",
+									"\t\t\t\"price\": 24,\r",
+									"\t\t\t\"category\": \"Accessories\",\r",
+									"\t\t\t\"quantity\": 0,\r",
+									"\t\t\t\"inventoryStatus\": \"OUTOFSTOCK\",\r",
+									"\t\t\t\"rating\": 4\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1011,\r",
+									"\t\t\t\"code\": \"4920nnc2d\",\r",
+									"\t\t\t\"name\": \"Green Earbuds\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"green-earbuds.jpg\",\r",
+									"\t\t\t\"price\": 89,\r",
+									"\t\t\t\"category\": \"Electronics\",\r",
+									"\t\t\t\"quantity\": 23,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 4\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1012,\r",
+									"\t\t\t\"code\": \"250vm23cc\",\r",
+									"\t\t\t\"name\": \"Green T-Shirt\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"green-t-shirt.jpg\",\r",
+									"\t\t\t\"price\": 49,\r",
+									"\t\t\t\"category\": \"Clothing\",\r",
+									"\t\t\t\"quantity\": 74,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 5\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1013,\r",
+									"\t\t\t\"code\": \"fldsmn31b\",\r",
+									"\t\t\t\"name\": \"Grey T-Shirt\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"grey-t-shirt.jpg\",\r",
+									"\t\t\t\"price\": 48,\r",
+									"\t\t\t\"category\": \"Clothing\",\r",
+									"\t\t\t\"quantity\": 0,\r",
+									"\t\t\t\"inventoryStatus\": \"OUTOFSTOCK\",\r",
+									"\t\t\t\"rating\": 3\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1014,\r",
+									"\t\t\t\"code\": \"waas1x2as\",\r",
+									"\t\t\t\"name\": \"Headphones\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"headphones.jpg\",\r",
+									"\t\t\t\"price\": 175,\r",
+									"\t\t\t\"category\": \"Electronics\",\r",
+									"\t\t\t\"quantity\": 8,\r",
+									"\t\t\t\"inventoryStatus\": \"LOWSTOCK\",\r",
+									"\t\t\t\"rating\": 5\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1015,\r",
+									"\t\t\t\"code\": \"vb34btbg5\",\r",
+									"\t\t\t\"name\": \"Light Green T-Shirt\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"light-green-t-shirt.jpg\",\r",
+									"\t\t\t\"price\": 49,\r",
+									"\t\t\t\"category\": \"Clothing\",\r",
+									"\t\t\t\"quantity\": 34,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 4\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1016,\r",
+									"\t\t\t\"code\": \"k8l6j58jl\",\r",
+									"\t\t\t\"name\": \"Lime Band\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"lime-band.jpg\",\r",
+									"\t\t\t\"price\": 79,\r",
+									"\t\t\t\"category\": \"Fitness\",\r",
+									"\t\t\t\"quantity\": 12,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 3\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1017,\r",
+									"\t\t\t\"code\": \"v435nn85n\",\r",
+									"\t\t\t\"name\": \"Mini Speakers\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"mini-speakers.jpg\",\r",
+									"\t\t\t\"price\": 85,\r",
+									"\t\t\t\"category\": \"Clothing\",\r",
+									"\t\t\t\"quantity\": 42,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 4\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1018,\r",
+									"\t\t\t\"code\": \"09zx9c0zc\",\r",
+									"\t\t\t\"name\": \"Painted Phone Case\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"painted-phone-case.jpg\",\r",
+									"\t\t\t\"price\": 56,\r",
+									"\t\t\t\"category\": \"Accessories\",\r",
+									"\t\t\t\"quantity\": 41,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 5\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1019,\r",
+									"\t\t\t\"code\": \"mnb5mb2m5\",\r",
+									"\t\t\t\"name\": \"Pink Band\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"pink-band.jpg\",\r",
+									"\t\t\t\"price\": 79,\r",
+									"\t\t\t\"category\": \"Fitness\",\r",
+									"\t\t\t\"quantity\": 63,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 4\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1020,\r",
+									"\t\t\t\"code\": \"r23fwf2w3\",\r",
+									"\t\t\t\"name\": \"Pink Purse\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"pink-purse.jpg\",\r",
+									"\t\t\t\"price\": 110,\r",
+									"\t\t\t\"category\": \"Accessories\",\r",
+									"\t\t\t\"quantity\": 0,\r",
+									"\t\t\t\"inventoryStatus\": \"OUTOFSTOCK\",\r",
+									"\t\t\t\"rating\": 4\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1021,\r",
+									"\t\t\t\"code\": \"pxpzczo23\",\r",
+									"\t\t\t\"name\": \"Purple Band\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"purple-band.jpg\",\r",
+									"\t\t\t\"price\": 79,\r",
+									"\t\t\t\"category\": \"Fitness\",\r",
+									"\t\t\t\"quantity\": 6,\r",
+									"\t\t\t\"inventoryStatus\": \"LOWSTOCK\",\r",
+									"\t\t\t\"rating\": 3\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1022,\r",
+									"\t\t\t\"code\": \"2c42cb5cb\",\r",
+									"\t\t\t\"name\": \"Purple Gemstone Necklace\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"purple-gemstone-necklace.jpg\",\r",
+									"\t\t\t\"price\": 45,\r",
+									"\t\t\t\"category\": \"Accessories\",\r",
+									"\t\t\t\"quantity\": 62,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 4\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1023,\r",
+									"\t\t\t\"code\": \"5k43kkk23\",\r",
+									"\t\t\t\"name\": \"Purple T-Shirt\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"purple-t-shirt.jpg\",\r",
+									"\t\t\t\"price\": 49,\r",
+									"\t\t\t\"category\": \"Clothing\",\r",
+									"\t\t\t\"quantity\": 2,\r",
+									"\t\t\t\"inventoryStatus\": \"LOWSTOCK\",\r",
+									"\t\t\t\"rating\": 5\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1024,\r",
+									"\t\t\t\"code\": \"lm2tny2k4\",\r",
+									"\t\t\t\"name\": \"Shoes\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"shoes.jpg\",\r",
+									"\t\t\t\"price\": 64,\r",
+									"\t\t\t\"category\": \"Clothing\",\r",
+									"\t\t\t\"quantity\": 0,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 4\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1025,\r",
+									"\t\t\t\"code\": \"nbm5mv45n\",\r",
+									"\t\t\t\"name\": \"Sneakers\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"sneakers.jpg\",\r",
+									"\t\t\t\"price\": 78,\r",
+									"\t\t\t\"category\": \"Clothing\",\r",
+									"\t\t\t\"quantity\": 52,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 4\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1026,\r",
+									"\t\t\t\"code\": \"zx23zc42c\",\r",
+									"\t\t\t\"name\": \"Teal T-Shirt\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"teal-t-shirt.jpg\",\r",
+									"\t\t\t\"price\": 49,\r",
+									"\t\t\t\"category\": \"Clothing\",\r",
+									"\t\t\t\"quantity\": 3,\r",
+									"\t\t\t\"inventoryStatus\": \"LOWSTOCK\",\r",
+									"\t\t\t\"rating\": 3\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1027,\r",
+									"\t\t\t\"code\": \"acvx872gc\",\r",
+									"\t\t\t\"name\": \"Yellow Earbuds\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"yellow-earbuds.jpg\",\r",
+									"\t\t\t\"price\": 89,\r",
+									"\t\t\t\"category\": \"Electronics\",\r",
+									"\t\t\t\"quantity\": 35,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 3\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1028,\r",
+									"\t\t\t\"code\": \"tx125ck42\",\r",
+									"\t\t\t\"name\": \"Yoga Mat\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"yoga-mat.jpg\",\r",
+									"\t\t\t\"price\": 20,\r",
+									"\t\t\t\"category\": \"Fitness\",\r",
+									"\t\t\t\"quantity\": 15,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 5\r",
+									"\t\t},\r",
+									"\t\t{\r",
+									"\t\t\t\"id\": 1029,\r",
+									"\t\t\t\"code\": \"gwuby345v\",\r",
+									"\t\t\t\"name\": \"Yoga Set\",\r",
+									"\t\t\t\"description\": \"Product Description\",\r",
+									"\t\t\t\"image\": \"yoga-set.jpg\",\r",
+									"\t\t\t\"price\": 20,\r",
+									"\t\t\t\"category\": \"Fitness\",\r",
+									"\t\t\t\"quantity\": 25,\r",
+									"\t\t\t\"inventoryStatus\": \"INSTOCK\",\r",
+									"\t\t\t\"rating\": 8\r",
+									"\t\t}\r",
+									"\t];\r",
+									"\r",
+									"for (const product of products) {\r",
+									"    pm.sendRequest({\r",
+									"    url: 'http://localhost:3000/products',\r",
+									"    method: 'POST',\r",
+									"    header: 'content-type:application/json',\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify(product)\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    console.log(res);\r",
+									"});\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000"
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "all products",
+			"item": [
+				{
+					"name": "add product",
+					"item": [
+						{
+							"name": "OK",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"id is a number\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"code\": \"code\",\r\n        \"name\": \"name\",\r\n        \"description\": \"description\",\r\n        \"price\": 100,\r\n        \"quantity\": 2,\r\n        \"inventoryStatus\": \"inventoryStatus\",\r\n        \"category\": \"category\",\r\n        \"image\": \"image\",\r\n        \"rating\": 10\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "FAILED already exists",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 409\", function () {\r",
+											"    pm.response.to.have.status(409);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\t\t{\r\n\t\t\t\"id\": 1001,\r\n\t\t\t\"code\": \"nvklal433\",\r\n\t\t\t\"name\": \"Black Watch\",\r\n\t\t\t\"description\": \"Product Description\",\r\n\t\t\t\"image\": \"black-watch.jpg\",\r\n\t\t\t\"price\": 72,\r\n\t\t\t\"category\": \"Accessories\",\r\n\t\t\t\"quantity\": 61,\r\n\t\t\t\"inventoryStatus\": \"INSTOCK\",\r\n\t\t\t\"rating\": 4\r\n\t\t}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "FAILED missing field",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"code\": \"code\",\r\n        \"name\": \"name\",\r\n        \"price\": 100,\r\n        \"quantity\": 2,\r\n        \"inventoryStatus\": \"inventoryStatus\",\r\n        \"category\": \"category\",\r\n        \"image\": \"image\",\r\n        \"rating\": 10\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "FAILED bad format field",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"code\": \"code\",\r\n        \"name\": \"name\",\r\n        \"description\": \"description\",\r\n        \"price\": \"price\",\r\n        \"quantity\": 2,\r\n        \"inventoryStatus\": \"inventoryStatus\",\r\n        \"category\": \"category\",\r\n        \"image\": \"image\",\r\n        \"rating\": 10\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "get all products",
+					"item": [
+						{
+							"name": "OK",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"products is an array\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.products).to.be.an(\"array\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"products[x] is a product\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"\r",
+											"    for(const product of jsonData.products){\r",
+											"        pm.expect(product.id).to.be.a(\"number\");\r",
+											"        pm.expect(product.code).to.be.a(\"string\");\r",
+											"        pm.expect(product.name).to.be.a(\"string\");\r",
+											"        pm.expect(product.description).to.be.a(\"string\");\r",
+											"        pm.expect(product.price).to.be.a(\"number\");\r",
+											"        pm.expect(product.quantity).to.be.a(\"number\");\r",
+											"        pm.expect(product.inventoryStatus).to.be.a(\"string\");\r",
+											"        pm.expect(product.category).to.be.a(\"string\");\r",
+											"        pm.expect(product.image).to.be.a(\"string\");\r",
+											"        pm.expect(product.rating).to.be.a(\"number\");\r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "one product",
+			"item": [
+				{
+					"name": "get one product",
+					"item": [
+						{
+							"name": "OK",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"products[1022] is a product\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"\r",
+											"        pm.expect(jsonData.id).to.eql(1022);\r",
+											"        pm.expect(jsonData.code).to.eql(\"2c42cb5cb\");\r",
+											"        pm.expect(jsonData.name).to.eql(\"Purple Gemstone Necklace\");\r",
+											"        pm.expect(jsonData.description).to.eql(\"Product Description\");\r",
+											"        pm.expect(jsonData.price).to.eql(45);\r",
+											"        pm.expect(jsonData.quantity).to.eql(62);\r",
+											"        pm.expect(jsonData.inventoryStatus).to.eql(\"INSTOCK\");\r",
+											"        pm.expect(jsonData.category).to.eql(\"Accessories\");\r",
+											"        pm.expect(jsonData.image).to.eql(\"purple-gemstone-necklace.jpg\");\r",
+											"        pm.expect(jsonData.rating).to.eql(4);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/products/1022",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"products",
+										"1022"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "update one product",
+					"item": [
+						{
+							"name": "OK",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"products[1022] has been updated\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"\r",
+											"        pm.expect(jsonData.id).to.eql(1022);\r",
+											"        pm.expect(jsonData.code).to.eql(\"toto\");\r",
+											"        \r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"code\": \"toto\",\r\n        \"name\": \"toto\",\r\n        \"description\": \"toto\",\r\n        \"price\": 100,\r\n        \"quantity\": 2,\r\n        \"inventoryStatus\": \"toto\",\r\n        \"category\": \"toto\",\r\n        \"image\": \"toto\",\r\n        \"rating\": 10\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/products/1022",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"products",
+										"1022"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "delete one product",
+					"item": [
+						{
+							"name": "OK",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/products/1022",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"products",
+										"1022"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://postman-echo.com",
+			"type": "string"
+		}
+	]
+}
