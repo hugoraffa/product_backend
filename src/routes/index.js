@@ -43,4 +43,4 @@ app.use((err, req, res, next) => {
 })
 
 // TODO add env var for listening host and port
-app.listen(3000);
+app.listen(4567);
