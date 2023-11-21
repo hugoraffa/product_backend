@@ -70,6 +70,7 @@ This app can:
 This app does not:
 - log in a professional way
 - offer docker env variable for production deployment (like hostname:port, database url, password...)
+- offer https
 
 ## Conclusion
 Thanks for reading me
