@@ -50,7 +50,7 @@ You can find tests/Regression testing.postman_collection.json to be imported wit
 
 ## Code architecture
 This is the current code architecture under /src:
-![Code architecture](assets/assets/code_archi.png)
+![Code architecture](assets/code_archi.png)
 - main file is app.js that takes care of booting route and database
 - webserver is defined in routes/index.js and API is located in /routes/apis/api.yaml
 - REST path/method are processed by /handlers
