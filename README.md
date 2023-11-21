@@ -66,11 +66,13 @@ This app can:
 - offer a basic healthcheck on 127.0.0.1:4567
 - share its api on 127.0.0.1:4567/api.yaml
 - handle the specified API (specified up above) on 127.0.0.1:4567/products(/productId)
+- lazily manage errors ("catch at top")
 
 This app does not:
 - log in a professional way
 - offer docker env variable for production deployment (like hostname:port, database url, password...)
 - offer https
+- offer monitoring in a professional way
 
 ## Conclusion
 Thanks for reading me
